@@ -2,3 +2,12 @@
 A tool that allows you to change the brightness of your light probes in Unity3D
 
 ![](https://github.com/kemalakay/lightprobes/blob/master/GIF/adam4.gif)
+
+### How To
+
+* Drag LightProbeIntensity.cs and .smcrsp files to your project
+*
+* 
+
+#### Updates: 
+⋅⋅* 13/02/2017 - Initial commit
