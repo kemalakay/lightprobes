@@ -29,4 +29,4 @@ TO-DO (Feature Requests):
 * 14/02/2017 - First version of the light probe adjuster
 * 06/02/2017 - Initial commit
 
-[1] - In Unity, spherical harmonics are used to store the lighting information in light probes. Find more information about the concept's theoretical background in this [a link](https://en.wikipedia.org/wiki/Spherical_harmonics)Wikipedia page 
+[1] - In Unity, spherical harmonics are used to store the lighting information in light probes. Find more information about the concept's theoretical background in this [Wikipedia page](https://en.wikipedia.org/wiki/Spherical_harmonics) 
