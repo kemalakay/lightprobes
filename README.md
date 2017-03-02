@@ -23,7 +23,7 @@ Known Issues:
 TO-DO (Feature Requests):
 * Using a slider for UI
 * Changing the intensity of selected probes (currently the intensity of all probes are overwritten)
-* Refactoring of some code 
+* Refactoring of some code and fixing bug(s)
 
 #### Updates: 
 * 14/02/2017 - First version of the light probe adjuster

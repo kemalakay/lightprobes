@@ -3,10 +3,7 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
-using UnityEditor.AnimatedValues;
-using UnityEditorInternal;
 
-//[CustomEditor(typeof(Light)), true]
 [CanEditMultipleObjects]
 public class ProbeIntensity : EditorWindow
 
@@ -16,7 +13,6 @@ public class ProbeIntensity : EditorWindow
     private float minSliderValue = 1.0f;
     private GUIStyle currentStyle = null;
     private Color textColor = new Color(0.71f, 0.71f, 0.71f);
-    // private bool isCompleted = false;
     public float inputNumber = 2.0f;
     static public bool noBaked = false;
 
@@ -47,14 +43,12 @@ public class ProbeIntensity : EditorWindow
     unsafe private static void ScaleLightProbeData(float scale)
     {
         DisplayWarning();
-       // StoreProbeData();
         inputValues.Add(scale);
-        //Debug.Log(scale);
 
         var probes = LightmapSettings.lightProbes.bakedProbes;
         if (probes == null)
         {
-            Debug.LogError("No probes!");
+            Debug.LogError("No probes in the scene!");
             return;
         }
 
@@ -100,21 +94,12 @@ public class ProbeIntensity : EditorWindow
                 float* valueAddress = probePointer + i;
                 float oldValue = *valueAddress;
                 oldValuesList.Add(oldValue);
-                // Debug.Log(oldValue + " ");
             }
 
             probes[j] = probe;
         }
 
         SetProbeData(probes);
-
-        //var lightProbes = LightmapSettings.lightProbes;
-
-        //lightProbes.bakedProbes = probes;
-        //LightmapSettings.lightProbes = lightProbes;
-        //EditorUtility.SetDirty(lightProbes);
-        //SceneView.RepaintAll(); 
-
         inputValues.Clear();
 
     }
@@ -129,12 +114,10 @@ public class ProbeIntensity : EditorWindow
         try
         {
             StoreProbeData();
-            Debug.Log("wooorkiiiiing????");
 
         }
         finally
         {
-            Debug.LogWarning("this works too");
         }
 
         for (int j = 0; j < probes.Length; j++)
@@ -148,23 +131,13 @@ public class ProbeIntensity : EditorWindow
             {
                 float* valueAddress = probePointer + i;
 
-                // Debug.Log(oldValuesList[i]);
                 *valueAddress = oldValuesList[i];
-                //valueAddress = oldValuesList[i];
             }
 
             probes[j] = probe;
         }
 
         SetProbeData(probes);
-
-        //var lightProbes = LightmapSettings.lightProbes;
-
-        //lightProbes.bakedProbes = probes;
-        //LightmapSettings.lightProbes = lightProbes;
-        //EditorUtility.SetDirty(lightProbes);
-        //SceneView.RepaintAll(); 
-
         inputValues.Clear();
 
     }
@@ -174,7 +147,6 @@ public class ProbeIntensity : EditorWindow
     {
         EditorWindow window = GetWindow(typeof(ProbeIntensity));
         window.Show();
-        //GetWindow<ProbeIntensity>().Show();
     }
 
     public void OnGUI()
@@ -228,14 +200,11 @@ public class ProbeIntensity : EditorWindow
 
             ScaleLightProbeData(sliderValue);
             DisplayWarning();
-            //Debug.Log(sliderValue);
         }
 
         if (GUILayout.Button("Decrease Intensity"))
         {
             ScaleLightProbeData(1 / Mathf.Abs(sliderValue));
-            // ScaleLightProbeData(sliderValue);
-            //Debug.Log(sliderValue);
         }
 
         GUILayout.EndHorizontal();
@@ -251,7 +220,6 @@ public class ProbeIntensity : EditorWindow
 
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
-        //EditorGUILayout.Slider(sliderValue, 0f, 8f, s_Styles.Intensity);
 
     }
 
@@ -261,7 +229,6 @@ public class ProbeIntensity : EditorWindow
         {
             currentStyle = new GUIStyle(GUI.skin.box);
             currentStyle.alignment = TextAnchor.MiddleLeft;
-            //currentStyle.normal.background = MakeTex(2, 2, new Color(0.494117647f, 0.494117647f, 0.494117647f, 1f));
             currentStyle.normal.textColor = textColor;
         }
     }
