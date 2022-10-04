@@ -21,22 +21,24 @@ public class ProbeIntensity : EditorWindow
 
     public static Lightmapping.OnCompletedFunction completed;
 
+    [SerializeField] private bool _isStored = false;
+    
     void Update()
     {
         CheckBaking();
     }
 
-    bool CheckBaking()
+    private void CheckBaking()
     {
         if (Lightmapping.isRunning)
         {
+            _isStored = false;
             oldValuesList.Clear();
-            return true;
         }
-        else
+        else if(_isStored == false)
         {
+            _isStored = true;
             StoreProbeData();
-            return false;
         }
     }
 
